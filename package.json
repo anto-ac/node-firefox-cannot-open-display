@@ -1,0 +1,21 @@
+{
+  "name": "node-firefox-cannot-open-display",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "npm run waitforservices && wdio src/config/wdio.conf.js --host selenium-hub",
+    "waitforservices": "node src/waitforservices.js"
+  },
+  "author": "Antonello Caboni",
+  "license": "",
+  "private": false,
+  "description": "",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "nodemon": "^1.17.3",
+    "request": "^2.85.0",
+    "wdio-mocha-framework": "^0.5.13",
+    "wdio-selenium-standalone-service": "^0.0.10",
+    "wdio-spec-reporter": "^0.1.4",
+    "webdriverio": "^4.13.1"
+  }
+}

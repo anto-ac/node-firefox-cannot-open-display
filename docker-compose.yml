@@ -1,0 +1,65 @@
+version: "2.1"
+
+services:
+  selenium-hub:
+    image: selenium/hub:3.14.0-arsenic
+    ports:
+    - "4444"
+    depends_on:
+      - selenium-chrome-1
+      - selenium-firefox-1
+      - selenium-chrome-2
+      - selenium-firefox-2
+      - selenium-chrome-3
+      - selenium-firefox-3
+      - selenium-chrome-4
+      - selenium-firefox-4
+      - selenium-chrome-5
+      - selenium-firefox-5
+      - selenium-chrome-6
+      - selenium-firefox-6
+      - selenium-chrome-7
+      - selenium-firefox-7
+      - selenium-chrome-8
+      - selenium-firefox-8
+
+  selenium-chrome-1: &node-chrome
+    image: selenium/node-chrome:3.14.0-arsenic
+    ports:
+    - "5555"
+    shm_size: 2g
+    environment:
+    - HUB_PORT_4444_TCP_ADDR=selenium-hub
+    - HUB_PORT_4444_TCP_PORT=4444
+
+  selenium-firefox-1: &node-firefox
+    <<: *node-chrome
+    image: selenium/node-firefox:3.14.0-arsenic
+    ports:
+    - "5555"
+
+  selenium-chrome-2: *node-chrome
+  selenium-firefox-2: *node-firefox
+  selenium-chrome-3: *node-chrome
+  selenium-firefox-3: *node-firefox
+  selenium-chrome-4: *node-chrome
+  selenium-firefox-4: *node-firefox
+  selenium-chrome-5: *node-chrome
+  selenium-firefox-5: *node-firefox
+  selenium-chrome-6: *node-chrome
+  selenium-firefox-6: *node-firefox
+  selenium-chrome-7: *node-chrome
+  selenium-firefox-7: *node-firefox
+  selenium-chrome-8: *node-chrome
+  selenium-firefox-8: *node-firefox
+
+  ui-test:
+    build: .
+    depends_on:
+      - selenium-hub
+    volumes:
+      - ./src/config/:/src/config
+    environment:
+      - PORT_SELENIUM_HUB
+      - PORT_SELENIUM_NODE
+    command: npm run test
