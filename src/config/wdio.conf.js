@@ -14,6 +14,7 @@ let config = {
   }],
   sync: true,
   coloredLogs: true,
+  logLevel: "verbose",
   waitforTimeout: 10000,
   connectionRetryTimeout: 75000,
   connectionRetryCount: 3,

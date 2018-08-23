@@ -5,7 +5,7 @@ cd $DIR
 
 PROJECT_NAME="cannot-open-display"
 
-DOCKER_COMPOSE_RUN_COMMAND="run ui-test"
+DOCKER_COMPOSE_RUN_COMMAND="up --remove-orphans --force-recreate --abort-on-container-exit"
 DOCKER_COMPOSE_FILES="-f docker-compose.yml"
 
 export PORT_SELENIUM_HUB=4444
